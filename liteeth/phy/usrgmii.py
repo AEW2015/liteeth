@@ -74,7 +74,7 @@ class LiteEthPHYRGMIIRX(Module):
                 p_CASCADE          = "NONE",
                 p_DELAY_TYPE       = "FIXED",
                 p_DELAY_VALUE      = int(rx_delay*1e12),
-                p_REFCLK_FREQUENCY = 300.0,
+                p_REFCLK_FREQUENCY = 200.0,
                 p_DELAY_FORMAT     = "TIME",
                 p_UPDATE_MODE      = "ASYNC",
                 i_CASC_IN     = 0,
@@ -112,7 +112,7 @@ class LiteEthPHYRGMIIRX(Module):
                     p_CASCADE          = "NONE",
                     p_DELAY_TYPE       = "FIXED",
                     p_DELAY_VALUE      = int(rx_delay*1e12),
-                    p_REFCLK_FREQUENCY = 300.0,
+                    p_REFCLK_FREQUENCY = 200.0,
                     p_UPDATE_MODE      = "ASYNC",
                     p_DELAY_FORMAT     = "TIME",
                     i_CASC_IN     = 0,
@@ -217,7 +217,7 @@ class LiteEthPHYRGMII(Module, AutoCSR):
     dw          = 8
     tx_clk_freq = 125e6
     rx_clk_freq = 125e6
-    def __init__(self, clock_pads, pads, with_hw_init_reset=True, tx_delay=2e-9, rx_delay=2e-9):
+    def __init__(self, clock_pads, pads, with_hw_init_reset=True, tx_delay=1e-9, rx_delay=1e-9):
         self.submodules.crg = LiteEthPHYRGMIICRG(clock_pads, pads, with_hw_init_reset, tx_delay)
         self.submodules.tx  = ClockDomainsRenamer("eth_tx")(LiteEthPHYRGMIITX(pads))
         self.submodules.rx  = ClockDomainsRenamer("eth_rx")(LiteEthPHYRGMIIRX(pads, rx_delay))
